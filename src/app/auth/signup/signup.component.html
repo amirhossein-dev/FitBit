@@ -1,0 +1,62 @@
+<section class="signup-form">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        placeholder=" آدرس ایمیل"
+        type="email"
+        ngModel
+        name="email"
+        email
+        required
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >این ورودی نباید خالی باشد
+      </mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >ایمیل شما صحیح نمی باشد</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field hintLabel="گذرواژه باید حداقل 6 حرف باشد ">
+      <input
+        matInput
+        placeholder=" گذرواژه "
+        type="password"
+        ngModel
+        name="password"
+        password
+        required
+        minlength="6"
+        #pwInput="ngModel"
+      />
+      <mat-error>گذرواژه باید 6 حرف باشد</mat-error>
+      <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
+    </mat-form-field>
+    <mat-checkbox
+      labelPosition="before"
+      color="primary"
+      ngModel
+      name="agree"
+      required
+      >با شرایط و ضوابط موافقم
+    </mat-checkbox>
+    <button
+      *ngIf="!(isLoading$ | async)"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid"
+    >
+      ثبت نام
+    </button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  </form>
+</section>
+<!-- با شرایط و ضوابط موافقت کنید -->

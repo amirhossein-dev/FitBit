@@ -1,0 +1,24 @@
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+
+import { WelcomeComponent } from './welcome/welcome.component';
+
+const route: Routes = [
+  { path: '', component: WelcomeComponent },
+  {
+    path: 'training',
+    loadChildren: () =>
+      import('./training/training.module').then((m) => m.TrainingModule),
+    canLoad: [AuthGuard],
+  },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(route, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
+  providers: [AuthGuard],
+})
+export class AppRoutingModule {}

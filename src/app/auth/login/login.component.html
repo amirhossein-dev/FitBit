@@ -1,0 +1,40 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder=" ایمیل"
+        formControlName="email"
+      />
+      <mat-hint>لطفا ایمیل معتبر وارد کنید</mat-hint>
+      <mat-error>ایمیل معتبر نیست یا وجود ندارد</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="گذرواژه "
+        formControlName="password"
+      />
+      <mat-hint>لطفا گذرواژه ی خود را وارد کنید</mat-hint>
+      <mat-error>گذرواژه وجود ندارد</mat-error>
+    </mat-form-field>
+    <button
+      *ngIf="!(isLoading$ | async)"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="loginForm.invalid"
+    >
+      ورود
+    </button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  </form>
+</section>

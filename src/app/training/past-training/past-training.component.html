@@ -1,0 +1,60 @@
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input
+      class="placeholder"
+      matInput
+      type="text"
+      (keyup)="doFilter($event)"
+      placeholder="فیلتر"
+    />
+  </mat-form-field>
+</div>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>زمان</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.date | datePersian
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >نام تمرین</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="calories">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>کالری</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.calories | number
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >مدت زمان</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{
+      element.duration | number
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >حالت اتمام</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator
+  [pageSize]="1"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+>
+</mat-paginator>

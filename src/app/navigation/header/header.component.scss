@@ -1,0 +1,26 @@
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-caption {
+  display: inline-block;
+  padding-right: 6px;
+}
+.font-config {
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 1rem;
+}
+
+.button-config {
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div><a class="logo-config" routerLink="/">FitBit</a></div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!(isAuth$ | async)">
+        <a class="font-config" routerLink="/signup">ثبت نام </a>
+      </li>
+      <li *ngIf="!(isAuth$ | async)">
+        <a class="font-config" routerLink="/login">حساب کاربری </a>
+      </li>
+      <li *ngIf="isAuth$ | async">
+        <a class="font-config" routerLink="/training">تمرینات </a>
+      </li>
+      <li *ngIf="isAuth$ | async" (click)="onLogout()">
+        <a class="button-config font-config">خروج</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
